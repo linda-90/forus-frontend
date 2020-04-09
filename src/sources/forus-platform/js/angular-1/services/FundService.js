@@ -1,7 +1,7 @@
 let FundService = function(ApiRequest) {
     let uriPrefix = '/platform/organizations/';
 
-    return new (function() {
+    return new(function() {
         this.list = function(organization_id, data = {}) {
             if (organization_id) {
                 return ApiRequest.get(
@@ -65,7 +65,7 @@ let FundService = function(ApiRequest) {
             filters = {}
         ) {
             return ApiRequest.get(
-                uriPrefix + organization_id + '/funds/' + fund_id + 
+                uriPrefix + organization_id + '/funds/' + fund_id +
                 '/providers/' + provider_id + '/transactions',
                 filters
             );
@@ -78,7 +78,7 @@ let FundService = function(ApiRequest) {
             filters = {}
         ) {
             return ApiRequest.get(
-                uriPrefix + organization_id + '/funds/' + fund_id + 
+                uriPrefix + organization_id + '/funds/' + fund_id +
                 '/providers/' + provider_id + '/transactions/export',
                 filters, {}, true, (_cfg) => {
                     _cfg.responseType = 'arraybuffer';
@@ -180,6 +180,13 @@ let FundService = function(ApiRequest) {
             return Papa.unparse([
                 fund.csv_required_keys.filter(key => key.indexOf('_eligible') == -1)
             ]);
+        };
+
+        this.criterionValidate = (organization_id, criterion) => {
+            return ApiRequest.patch(
+                uriPrefix + organization_id + '/funds/criteria/validate',
+                criterion
+            );
         };
     });
 };

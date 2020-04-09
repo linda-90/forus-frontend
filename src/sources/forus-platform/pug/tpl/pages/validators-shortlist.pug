@@ -1,0 +1,33 @@
+.app.app-container(ng-if="$root.activeOrganization && $root.auth_user && $ctrl.validatorOrganizations")
+    menu
+    section.app.app-content
+        .card-heading Shortlisted validators
+
+        .block.block-shortlist-validators
+            .validator-item(ng-repeat="organization in $ctrl.validatorOrganizations.data")
+                .validator-logo: img(
+                    ng-src="{{ organization.logo.sizes.thumbnail || './assets/img/placeholders/organization-thumbnail.png' }}"
+                    ).validator-logo-img
+                .validator-details
+                    .validator-title(ng-bind="organization.name")
+                    .validator-properties
+                        .validator-property(ng-if="organization.email_public")
+                            .validator-property-label E-mail
+                            .validator-property-value.text-primary-light(ng-bind="organization.email")
+                        .validator-property(ng-if="organization.phone_public")
+                            .validator-property-label Telefonnummer
+                            .validator-property-value(ng-bind="organization.phone")
+                        .validator-property(ng-if="organization.website_public")
+                            .validator-property-label Website
+                            .validator-property-value.text-primary-light(ng-bind="organization.website")
+                
+                .validator-actions.form: label.form-toggle(for="{{ 'option_' + organization.id }}")
+                    input(type="checkbox" ng-model="organization.approved" ng-change="$ctrl.onChange(organization)" id="{{ 'option_' + organization.id }}")
+                    .form-toggle-inner.flex-end: .toggle-input: .toggle-input-dot
+        
+        .card: .card-section
+                //- (ng-if="$ctrl.validatorOrganizations.meta" ng-show="$ctrl.validatorOrganizations.meta.last_page > 1")
+                paginator(meta="$ctrl.validatorOrganizations.meta" filters="$ctrl.filters.values" count-buttons="5" on-page-change="$ctrl.onPageChange(query)")
+        
+        div(ng-if="$ctrl.validatorOrganizations.length == 0")
+            block-empty(text="No validators." )

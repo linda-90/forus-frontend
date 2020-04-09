@@ -45,6 +45,8 @@ app.component('emailPreferencesComponent', require('./components/EmailPreference
 app.component('securitySessionsComponent', require('./components/SecuritySessionsComponent'));
 app.component('fundProviderInviteComponent', require('./components/FundProviderInviteComponent'));
 app.component('identityEmailsComponent', require('./components/IdentityEmailsComponent'));
+app.component('validatorsShortlistComponent', require('./components/ValidatorsShortlistComponent'));
+app.component('externalFundsComponent', require('./components/ExternalFundsComponent'));
 
 // Modal Components
 app.component('modalAuthComponent', require('./components/Modals/ModalAuthComponent'));
@@ -176,6 +178,8 @@ app.directive('pdfPreview', require('./directives/PdfPreviewDirective'));
 app.directive('pushNotifications', require('./directives/PushNotificationsDirective'));
 app.directive('fundCardInvitationProvider', require('./directives/FundCardInvitationProviderDirective'));
 app.directive('googleMap', require('./directives/GoogleMapDirective'));
+app.directive('fundCriteriaEditor', require('./directives/FundCriteriaEditorDirective'));
+app.directive('fundCriteriaEditorItem', require('./directives/FundCriteriaEditorItemDirective'));
 
 app.directive('signUpOfficeEdit', require('./directives/sign_up/SignUpOfficeEditDirective'));
 

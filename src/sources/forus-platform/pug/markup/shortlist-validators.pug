@@ -1,0 +1,26 @@
+extends ../layout/layout-markup
+block content
+    .card-heading Shortlisted validators
+    .block.block-shortlist-validators
+        mixin validator(id, title, active)
+            .validator-item
+                .validator-logo: img(src="/assets/img/organization-no-logo.svg").validator-logo-img
+                .validator-details
+                    .validator-title HSBC Bank plc lorem ipsum
+                    .validator-properties
+                        .validator-property
+                            .validator-property-label E-mail
+                            .validator-property-value.text-primary-light contacts@ing.com
+                        .validator-property
+                            .validator-property-label Telefonnummer
+                            .validator-property-value 2476908
+                        .validator-property
+                            .validator-property-label Website
+                            .validator-property-value.text-primary-light www.ing.com
+                .validator-actions.form: label.form-toggle(for=("option_" + id))
+                    input(type="checkbox" checked=active id=("option_" + id))
+                    .form-toggle-inner.flex-end: .toggle-input: .toggle-input-dot
+
+        +validator(1, "ING Groep N.V. Dolor sit amet", true)
+        +validator(2, "ING Groep N.V. Dolor sit amet", true)
+        +validator(3, "HSBC Bank plc lorem ipsum")

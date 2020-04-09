@@ -1,0 +1,50 @@
+extends ../layout/layout-markup
+block content
+    .card-heading: .flex-row
+        .flex-col Validators
+        .flex-col.text-right.form: .flex-row
+            .flex-col.flex-grow: label.form-label(for="auto_validate") Auto accept
+            .flex-col: label.form-toggle(for="auto_validate").flex-end
+                input(type="checkbox" checked=active id="auto_validate")
+                .form-toggle-inner.flex-end: .toggle-input: .toggle-input-dot
+
+    mixin fund_item(title, state)
+        .card
+            .card-section
+                .card-section-actions: .tag.tag-success Active
+
+                .card-block.card-block-fund
+                    .fund-img: img(src="./assets/img/zuidhorn-logo.jpg", alt="")
+                    a(href="#").fund-title=title
+                    br
+                    a(href="#").fund-organization Gemeente Zuidhorn
+            
+            .card-section: .form
+                .block.block-card-toggleable
+                    .block-title List of criterias
+                    
+                    mixin toggleable_row(id, title)
+                        .card-toggleable
+                            label(for=("option_" + id)).card-toggleable-label=title
+                            div: label.form-toggle(for=("option_" + id))
+                                input(type="checkbox" checked=active id=("option_" + id))
+                                .form-toggle-inner.flex-end: .toggle-input: .toggle-input-dot
+            
+                    +toggleable_row(1, 'Leeftijd')
+                    +toggleable_row(2, 'Maandloon')
+                    +toggleable_row(3, 'Uitkering (netto)')
+                    +toggleable_row(4, 'Kindgebonden budget')
+                    +toggleable_row(5, 'Gemeente')
+
+            .card-section.card-section-primary.text-right
+                a(href="#").button.button-default
+                    em.mdi.mdi-close.icon-start 
+                    | Decline all
+
+                a(href="#").button.button-primary
+                    em.mdi.mdi-plus-circle.icon-start 
+                    | Accept all
+
+    +fund_item("Kindpakket 2018", "active")
+    +fund_item("Kindpakket 2018", "active")
+    +fund_item("Kindpakket 2018", "active")

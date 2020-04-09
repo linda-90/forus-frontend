@@ -38,14 +38,14 @@
                 .card-block.card-block-listing.card-block-listing-inline
                     .card-block-listing-label Fonds
                     .card-block-listing-value
-                        span(ng-bind="$ctrl.fundsById[validatorRequest.fund_id].name") 
+                        span(ng-bind="validatorRequest.fund.name") 
                         em.mdi.mdi-information.block.block-tooltip-details(
                             ng-click="$ctrl.showFundCriteria($event, validatorRequest)"
                             ng-class="{active: validatorRequest.showCriteria}")
                             .tooltip-content(
                                 ng-if="validatorRequest.showCriteria" 
                                 click-outside="$ctrl.hideFundCriteria($event, validatorRequest)"): ul.tooltip-list
-                                li(ng-repeat="critera in $ctrl.fundsById[validatorRequest.fund_id].criteria").tooltip-list-item
+                                li(ng-repeat="critera in validatorRequest.fund.criteria").tooltip-list-item
                                     em.mdi.mdi-check
                                     | {{ critera.record_type_name }} moet
                                     span(ng-if="critera.operator == '>'") meer dan 

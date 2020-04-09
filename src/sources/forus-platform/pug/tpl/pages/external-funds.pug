@@ -1,0 +1,43 @@
+.app.app-container(ng-if="$root.activeOrganization && $root.auth_user && $ctrl.funds")
+    menu
+    section.app.app-content
+        .card-heading: .flex-row
+            .flex-col Validators
+            .flex-col.text-right.form: .flex-row
+                .flex-col.flex-grow: label.form-label(for="auto_validate") Auto accept
+                .flex-col: label.form-toggle(for="auto_validate").flex-end
+                    input(
+                        type="checkbox" 
+                        id="auto_validate"
+                        ng-model="$ctrl.auto_validate_form.values.validator_auto_accept_funds" 
+                        ng-change="$ctrl.auto_validate_form.submit()" )
+                    .form-toggle-inner.flex-end: .toggle-input: .toggle-input-dot
+
+        .card(ng-repeat="fund in $ctrl.funds.data")
+            .card-section
+                .card-section-actions: .tag.tag-success Active
+
+                .card-block.card-block-fund
+                    .fund-img: img(src="./assets/img/zuidhorn-logo.jpg", alt="")
+                    a(href="#").fund-title(ng-bind="fund.name")
+                    br
+                    a(href="#").fund-organization(ng-bind="fund.organization")
+            
+            .card-section: .form
+                .block.block-card-toggleable
+                    .block-title List of criterias
+
+                    .card-toggleable(ng-repeat="criterion in fund.criteria")
+                        label(for="option_{{ criterion.id }}").card-toggleable-label(ng-bind="criterion.name")
+                        div: label.form-toggle(for="option_{{ criterion.id }}")
+                            input(type="checkbox" ng-change="$ctrl.updateFundAcceptance(fund)" ng-model="criterion.accepted" id="option_{{ criterion.id }}")
+                            .form-toggle-inner.flex-end: .toggle-input: .toggle-input-dot
+
+            .card-section.card-section-primary.text-right
+                a(ng-click="$ctrl.declineAll(fund)").button.button-default
+                    em.mdi.mdi-close.icon-start 
+                    | Decline all
+
+                a(ng-click="$ctrl.acceptAll(fund)").button.button-primary
+                    em.mdi.mdi-plus-circle.icon-start 
+                    | Accept all
