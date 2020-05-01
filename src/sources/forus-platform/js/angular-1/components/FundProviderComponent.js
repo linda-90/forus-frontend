@@ -93,6 +93,63 @@ let FundProviderComponent = function(
         });
     };
 
+    $ctrl.prepareProperties = () => {
+        let organization =  $ctrl.fundProvider.organization;
+        let properties = [];
+
+        if (organization.email) {
+            properties.push({
+                label: "E-mail",
+                value: organization.email,
+                primary: true,
+            });
+        }
+
+        if (organization.website) {
+            properties.push({
+                label: "Website",
+                value: organization.website,
+                primary: true,
+            });
+        }
+
+        if (organization.phone) {
+            properties.push({
+                label: "Telefoonnummer",
+                value: organization.phone,
+                primary: true,
+            });
+        }
+
+        if (organization.kvk) {
+            properties.push({
+                label: "KVK",
+                value: organization.kvk,
+            });
+        }
+
+        if (organization.iban) {
+            properties.push({
+                label: "IBAN",
+                value: organization.iban,
+            });
+        }
+
+        if (organization.btw) {
+            properties.push({
+                label: "BTW",
+                value: organization.btw,
+            });
+        }
+
+        let count = properties.length;
+
+        $ctrl.properties = [
+            properties.splice(0, count == 4 ? 4 : 3),
+            properties.splice(0, count == 4 ? 4 : 3)
+        ];
+    };
+
     $ctrl.$onInit = function() {
         $ctrl.onPageChange($ctrl.filters.values).then(() => {
             OfficeService.list($ctrl.fundProvider.organization_id, {
@@ -101,6 +158,8 @@ let FundProviderComponent = function(
                 $ctrl.offices = res.data;
             });
         });
+
+        $ctrl.prepareProperties();
     };
 };
 

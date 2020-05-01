@@ -9,53 +9,12 @@
                     .entity-photo-abbr
                 .entity-details: .entity-title(ng-bind="$ctrl.fundProvider.organization.name")
             
-            .card-section.card-section-primary.card-section-narrow
+            .card-section.card-section-primary.card-section-narrow(ng-repeat="properties in $ctrl.properties" ng-if="properties.length > 0")
                 .flex-row.flex-grow
-                    .flex-col(ng-if="$ctrl.fundProvider.organization.email")
+                    .flex-col(ng-repeat="property in properties")
                         .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
-                            .card-block-listing-label Email:
-                            .card-block-listing-value.text-primary-light(ng-bind="$ctrl.fundProvider.organization.email")
-                    
-                    .flex-col(ng-if="$ctrl.fundProvider.organization.website")
-                        .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
-                            .card-block-listing-label Website:
-                            .card-block-listing-value.text-primary-light(ng-bind="$ctrl.fundProvider.organization.website")
-                        
-                    .flex-col(ng-if="$ctrl.fundProvider.organization.phone")
-                        .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
-                            .card-block-listing-label Telefonnummer:
-                            .card-block-listing-value(ng-bind="$ctrl.fundProvider.organization.phone")
-                    
-                    .flex-col(ng-if="$ctrl.fundProvider.organization.kvk")
-                        .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
-                            .card-block-listing-label KVK:
-                            .card-block-listing-value(ng-bind="$ctrl.fundProvider.organization.kvk")
-
-            //- .card-section.card-section-narrow: .block.block-entity-overview
-                .entity-details: .entity-overview
-                    .entity-overview-row(ng-if="$ctrl.fundProvider.organization.email")
-                        .entity-overview-label E-mail:
-                        .entity-overview-value(ng-bind="$ctrl.fundProvider.organization.email")
-                    
-                    .entity-overview-row(ng-if="$ctrl.fundProvider.organization.website")
-                        .entity-overview-label Website:
-                        .entity-overview-value(ng-bind="$ctrl.fundProvider.organization.website")
-                    
-                    .entity-overview-row(ng-if="$ctrl.fundProvider.organization.phone")
-                        .entity-overview-label Telefoonnummer:
-                        .entity-overview-value(ng-bind="$ctrl.fundProvider.organization.phone")
-                    
-                    .entity-overview-row(ng-if="$ctrl.fundProvider.organization.kvk")
-                        .entity-overview-label KVK:
-                        .entity-overview-value(ng-bind="$ctrl.fundProvider.organization.kvk")
-                    
-                    .entity-overview-row(ng-if="$ctrl.fundProvider.organization.iban")
-                        .entity-overview-label IBAN:
-                        .entity-overview-value(ng-bind="$ctrl.fundProvider.organization.iban")
-                    
-                    .entity-overview-row(ng-if="$ctrl.fundProvider.organization.btw")
-                        .entity-overview-label BTW:
-                        .entity-overview-value(ng-bind="$ctrl.fundProvider.organization.btw")
+                            .card-block-listing-label(ng-bind="property.label")
+                            .card-block-listing-value(ng-bind="property.value" ng-class="property.primary ? 'text-primary-light' : ''")
 
             .card-section.card-section-primary.card-section-narrow.form: .row: .col.col-lg-8: .flex-row
                 .flex-col: .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
