@@ -1,5 +1,5 @@
 .product-item
-    .product-media: img.product-media-img(ng-src="{{ product.photo.sizes.large || './assets/img/placeholders/product-thumbnail.png' }}")
+    .product-media: img.product-media-img(ng-src="{{ product.photo.sizes.thumbnail || './assets/img/placeholders/product-thumbnail.png' }}")
     .product-details
         .product-title
             | {{ product.name }}

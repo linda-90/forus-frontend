@@ -9,7 +9,8 @@
 
         .block.block-provider-product
             .product-overview
-                .product-media: img.product-media-img(src="./assets/img/placeholders/product-small.png")
+                .product-media: img.product-media-img(
+                    ng-src="{{ $ctrl.product.photo ? $ctrl.product.photo.sizes.small : './assets/img/placeholders/product-small.png' }}")
                 .product-details
                     .product-name(ng-bind="$ctrl.product.name")
                     .product-properties
