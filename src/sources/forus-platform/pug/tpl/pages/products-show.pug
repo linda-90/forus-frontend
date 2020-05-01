@@ -49,7 +49,7 @@
         
         .card
             .card-header: .card-title: .flex-row
-                .flex-col Funds
+                .flex-col Fondsen
                 //- .flex-col.block.block-inline-filters
                     .form: .form-group: input(type="text" placeholder="Zoeken").form-control
             
@@ -61,7 +61,7 @@
                                 th.th-narrow Afbeelding
                                 th Naam
                                 th Geaccepteerd
-                                th.th-narrow Messages
+                                th.th-narrow Berichten
                                 th.th-narrow
                             
                             tr(ng-repeat="fund in $ctrl.funds.data")
@@ -71,8 +71,8 @@
                                     ).td-media
                                 td(ng-bind="fund.name")
                                 td
-                                    .label.label-success(ng-if="fund.approved") Accepted
-                                    .label.label-default(ng-if="!fund.approved") Pending
+                                    .label.label-success(ng-if="fund.approved") Geaccepteerd
+                                    .label.label-default(ng-if="!fund.approved") Wachtend
                                 td.nowrap 
                                     .button.button-icon(
                                         ng-class="fund.chat.provider_unseen_messages > 0 ? 'button-primary-light' : 'button-default'" 
@@ -92,7 +92,7 @@
                                         ng-disabled="!fund.approved"
                                         href="{{ $ctrl.funds.data[0].implementation.url_webshop + 'products/' + $ctrl.product.id }}" target="_blank")
                                         em.mdi.mdi-eye-outline.icon-start 
-                                        | View on webshop
+                                        | Bekijk op webshop
 
             .card-section(ng-if="$ctrl.funds.meta" ng-show="$ctrl.funds.meta.last_page > 1")
                 paginator(meta="$ctrl.funds.meta" filters="$ctrl.filters.values" count-buttons="5" on-page-change="$ctrl.onPageChange(query)")
