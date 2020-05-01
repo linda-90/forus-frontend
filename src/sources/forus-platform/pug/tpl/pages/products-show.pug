@@ -7,7 +7,8 @@
 
         .block.block-provider-product
             .product-overview
-                .product-media: img.product-media-img(src="./assets/img/placeholders/product-small.png")
+                .product-media: img.product-media-img(
+                    ng-src="{{ $ctrl.product.photo ? $ctrl.product.photo.sizes.small : './assets/img/placeholders/product-small.png' }}")
                 
                 .product-details
                     .product-name(ng-bind="$ctrl.product.name")
@@ -90,7 +91,7 @@
                                 td.nowrap
                                     a.button.button-default(
                                         ng-disabled="!fund.approved"
-                                        href="{{ $ctrl.funds.data[0].implementation.url_webshop + 'products/' + $ctrl.product.id }}" target="_blank")
+                                        href="{{ fund.implementation.url_webshop + 'products/' + $ctrl.product.id }}" target="_blank")
                                         em.mdi.mdi-eye-outline.icon-start 
                                         | View on webshop
 

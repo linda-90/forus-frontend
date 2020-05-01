@@ -106,7 +106,8 @@
 
             .block.block-providers
                 .provider-item(ng-repeat="providerFund in $ctrl.fundProviders.data")
-                    .provider-media: img.provider-media-img(src="./assets/img/zuidhorn-logo.jpg")
+                    .provider-media: img.provider-media-img(
+                        ng-src="{{ providerFund.organization.logo.sizes.thumbnail || './assets/img/placeholders/organization-thumbnail.png' }}")
                     .provider-details
                         .provider-title(ng-bind="providerFund.organization.name")
                         .provider-subtitle(ng-bind="providerFund.products_count_all + ' aanbiedingen'")
