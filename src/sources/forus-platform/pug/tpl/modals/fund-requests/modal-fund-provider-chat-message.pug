@@ -11,7 +11,7 @@
                     | hier een aanpassing verzoeken. De aanbieder ontvangt hierover bericht.
             form(ng-submit="$ctrl.form.submit()").form: .form-group
                 .form-label Bericht
-                textarea(ng-model="$ctrl.form.values.message" placeholder="Message to provider").form-control
+                textarea(ng-model="$ctrl.form.values.message" placeholder="Bericht aan aanbieder").form-control
                 .form-error(ng-repeat="error in $ctrl.form.errors.message" ng-bind="error")
         
         .modal-footer.text-center

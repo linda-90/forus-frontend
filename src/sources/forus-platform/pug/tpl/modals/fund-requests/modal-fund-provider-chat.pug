@@ -2,7 +2,7 @@
     .modal-backdrop(ng-click="$ctrl.closeModal()")
     .modal-window
         a(ng-click="$ctrl.closeModal()").mdi.mdi-close.modal-close
-        .modal-header Messages
+        .modal-header Berichten
         
         .modal-body.form
             .modal-section.modal-section-light.modal-section-sm
@@ -17,7 +17,7 @@
                             .chat-message-text(ng-bind="message.message")
             
             .modal-section.modal-section-light.modal-section-sm
-                textarea.r-n.form-control(placeholder="Message" ng-model="$ctrl.form.values.message")
+                textarea.r-n.form-control(placeholder="Bericht" ng-model="$ctrl.form.values.message")
                 .form-error(ng-repeat="error in $ctrl.form.errors.message" ng-bind="error")
             
         .modal-footer.text-center
