@@ -1,8 +1,8 @@
 let FundProviderComponent = function(
     $q,
+    $state,
     FundService,
     OfficeService,
-    OrganizationEmployeesService,
     ProductService,
     PushNotificationsService
 ) {
@@ -15,7 +15,7 @@ let FundProviderComponent = function(
         },
     };
 
-    $ctrl.tab = "products";
+    $ctrl.tab = "employees";
 
     $ctrl.updateAllowBudget = function(fundProvider) {
         FundService.updateProvider(
@@ -67,11 +67,10 @@ let FundProviderComponent = function(
                 $ctrl.fundProvider.organization_id,
                 Object.assign({}, query)
             ).then((res) => {
-                $ctrl.products = {
+                resolve($ctrl.products = {
                     meta: res.data.meta,
                     data: $ctrl.transformProductsList(res.data.data),
-                }
-                resolve($ctrl.products = res.data);
+                });
             }, reject);
         });
     };
@@ -85,9 +84,20 @@ let FundProviderComponent = function(
         return products.map(product => $ctrl.transformProduct(product));
     };
 
+    $ctrl.openProductDetails = (product) => {
+        $state.go('fund-provider-product', {
+            organization_id: $ctrl.organization.id,
+            fund_provider_id: $ctrl.fundProvider.id,
+            fund_id: $ctrl.fund.id,
+            product_id: product.id,
+        });
+    };
+
     $ctrl.$onInit = function() {
         $ctrl.onPageChange($ctrl.filters.values).then(() => {
-            OfficeService.list($ctrl.fundProvider.organization_id).then(res => {
+            OfficeService.list($ctrl.fundProvider.organization_id, {
+                per_page: 100
+            }).then(res => {
                 $ctrl.offices = res.data;
             });
         });
@@ -102,9 +112,9 @@ module.exports = {
     },
     controller: [
         '$q',
+        '$state',
         'FundService',
         'OfficeService',
-        'OrganizationEmployeesService',
         'ProductService',
         'PushNotificationsService',
         FundProviderComponent

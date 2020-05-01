@@ -86,4 +86,16 @@ module.exports = ['ModalRouteProvider', function(ModalRouteProvider) {
     ModalRouteProvider.modal('voucherExportType', {
         component: 'modalVoucherExportTypeComponent'
     });
+
+    ModalRouteProvider.modal('fundProviderChat', {
+        component: 'modalFundProviderChatComponent'
+    });
+    
+    ModalRouteProvider.modal('fundProviderChatProvider', {
+        component: 'modalFundProviderChatProviderComponent'
+    });
+
+    ModalRouteProvider.modal('fundProviderChatMessage', {
+        component: 'modalFundProviderChatMessageComponent'
+    });
 }];
