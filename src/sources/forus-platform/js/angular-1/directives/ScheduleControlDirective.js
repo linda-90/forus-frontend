@@ -6,6 +6,8 @@ let ScheduleControlDirective = function(
 ) {
     let $dir = $scope.$dir = {};
 
+    $dir.dayTimes = OfficeService.scheduleDayTimes();
+
     let transformHours = (hours) => {
         if (hours < 0) {
             hours = 0;
@@ -159,6 +161,15 @@ let ScheduleControlDirective = function(
                 schedule[index] = {};
             }
 
+            if (typeof $dir.schedule[index] == 'undefined') {
+                $dir.schedule[index] = {
+                    start_time: 'null',
+                    break_start_time: 'null',
+                    end_time: 'null',
+                    break_end_time: 'null',
+                };
+            }
+
             $dir.scheduleDetails[index].is_opened != schedule[index].is_opened;
 
             if (!schedule[index].is_opened ||
@@ -167,8 +178,6 @@ let ScheduleControlDirective = function(
             ) {
                 return;
             }
-
-            delete $dir.schedule[index];
         }, 0);
     };
 

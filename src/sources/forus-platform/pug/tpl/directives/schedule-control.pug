@@ -32,42 +32,43 @@
                     data-id="schedule_is_opened{{$index}}"
                     ng-change="$dir.toggleOpened($index)"
                     ng-model="$dir.scheduleDetails[weekDayKey].is_opened")
-            
+
             br.hide-lg
             td
-                ui-control-text.time.start(
-                    ng-model="$dir.schedule[weekDayKey].start_time"
+                select(
                     ng-if="$dir.scheduleDetails[weekDayKey].is_opened"
-                    ng-change="$dir.syncHours($index, 'start_time')"
-                    data-placeholder="Van")
+                    ng-options="time.id as time.value for time in $dir.dayTimes"
+                    ng-model="$dir.schedule['' + weekDayKey].start_time"
+                    ng-change="$dir.syncHours($index, 'start_time')").form-control   
                 span(
                     ng-if="!$dir.scheduleDetails[weekDayKey].is_opened"
-                    translate="organization_edit.labels.closed")
+                    translate="organization_edit.labels.closed")  
             
             td
-                ui-control-text.time.end(
-                    ng-model="$dir.schedule[weekDayKey].end_time"
+                select(
                     ng-if="$dir.scheduleDetails[weekDayKey].is_opened"
-                    ng-change="$dir.syncHours($index, 'end_time')"
-                    data-placeholder="Tot")
+                    ng-options="time.id as time.value for time in $dir.dayTimes" 
+                    ng-model="$dir.schedule[weekDayKey].end_time"
+                    ng-change="$dir.syncHours($index, 'end_time')").form-control  
 
             td.breaks
-                ui-control-text.time.breaks.start(
+                select(
+                    ng-if="$dir.scheduleDetails[weekDayKey].is_opened"
+                    ng-options="time.id as time.value for time in $dir.dayTimes" 
                     ng-model="$dir.schedule[weekDayKey].break_start_time"
+                    ng-change="$dir.syncHours($index, 'break_start_time')").form-control  
+            
+            td.breaks
+                select(
                     ng-if="$dir.scheduleDetails[weekDayKey].is_opened"
-                    ng-change="$dir.syncHours($index, 'break_start_time')"
-                    data-placeholder="Van")
-
-                ui-control-text.time.breaks.end(
+                    ng-options="time.id as time.value for time in $dir.dayTimes" 
                     ng-model="$dir.schedule[weekDayKey].break_end_time"
-                    ng-if="$dir.scheduleDetails[weekDayKey].is_opened"
-                    ng-change="$dir.syncHours($index, 'break_end_time')"
-                    data-placeholder="Tot")
+                    ng-change="$dir.syncHours($index, 'break_end_time')").form-control  
 
         br
 
     .block-schedule-mobile.show-sm
-        .block-schedule-day(ng-repeat="(weekDayKey, weekDay) in $dir.weekDays track by $index")
+        .block-schedule-day(ng-repeat="(weekDayKey, weekDay) in $dir.weekDays")
             .block-schedule-day-name: .flex-row
                 .flex-col(ng-class="$index >= 5 ? 'text-danger' : ''" ng-bind="weekDay")
                 .flex-col.text-right(

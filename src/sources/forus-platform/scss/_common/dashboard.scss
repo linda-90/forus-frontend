@@ -3836,6 +3836,21 @@ $colorPrimaryLight: $color_primary_light;
                     text-align: center;
                 }
             }
+
+            tr {
+                th, td {
+                    select {
+                        &.form-control {
+                            padding: 4px 20px !important;
+                        }
+                    }
+
+                    &.breaks {
+                        padding-left: 10px;
+                        padding-right: 10px;
+                    }
+                }
+            }
     
             .ui-control {
                 &.ui-control-text {

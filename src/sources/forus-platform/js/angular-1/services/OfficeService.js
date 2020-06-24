@@ -84,26 +84,26 @@ let OfficeService = function(ApiRequest) {
             for (let prop in weekDays) {
                 if (!schedule[prop]) {
                     schedule[prop] = {
-                        'start_time': '',
-                        'end_time': '',
-                        'break_start_time': '',
-                        'break_end_time': '',
+                        'start_time': 'null',
+                        'end_time': 'null',
+                        'break_start_time': 'null',
+                        'break_end_time': 'null',
                     }
                 } else {
                     if (!schedule[prop].start_time) {
-                        schedule[prop].start_time = '';
+                        schedule[prop].start_time = 'null';
                     }
 
                     if (!schedule[prop].end_time) {
-                        schedule[prop].end_time = '';
+                        schedule[prop].end_time = 'null';
                     }
 
                     if (!schedule[prop].break_start_time) {
-                        schedule[prop].break_start_time = '';
+                        schedule[prop].break_start_time = 'null';
                     }
 
                     if (!schedule[prop].break_end_time) {
-                        schedule[prop].break_end_time = '';
+                        schedule[prop].break_end_time = 'null';
                     }
                 }
             }
@@ -140,15 +140,23 @@ let OfficeService = function(ApiRequest) {
         };
 
         this.scheduleDayTimes = () => {
-            let times = {
-                'null': 'Tijd'
-            };
+            let times = [{
+                id: 'null',
+                value: 'Tijd'
+            }];
 
             for (var i = 0; i < 24; i++) {
                 let hour = (i < 10 ? '0' + i : i);
 
-                times[hour + ':00'] = hour + ':00';
-                times[hour + ':30'] = hour + ':30';
+                times.push({
+                    id: hour + ':00',
+                    value: hour + ':00'
+                });
+                
+                times.push({
+                    id: hour + ':30',
+                    value: hour + ':30'
+                });
             }
 
             return times;
